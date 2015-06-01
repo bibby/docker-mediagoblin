@@ -8,13 +8,17 @@ Developed on an Ubuntu host, so sorry about the assumptions there.
 
 After checking out the repository, run the build script to produce a local **bbby/mediagoblin** image.
 
-```./build.sh```
+```
+./build.sh
+```
 
 ## Running
 
 You can start the container by running the start script and providing a path to a directory on the docker host you want to use as a data volume. 
 
-```./start.sh /path/to/mg_data```
+```
+./start.sh /path/to/mg_data
+```
 
 Using that script, the volume path does not need to exist prior to running.
 
