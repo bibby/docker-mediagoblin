@@ -1,0 +1,21 @@
+FROM ubuntu:14.04
+
+RUN apt-get update
+RUN apt-get install -y \
+	git-core python-dev \
+	libxml2-dev libxslt-dev \
+	python-pip python-imaging \
+	zlib1g-dev sqlite3
+
+WORKDIR /var/lib
+RUN git clone git://git.savannah.gnu.org/mediagoblin.git -b stable --recursive mediagoblin
+
+WORKDIR /var/lib/mediagoblin
+RUN pip install cython
+RUN pip install lxml
+COPY config/mediagoblin.ini /var/lib/mediagoblin/mediagoblin.ini
+RUN python setup.py develop
+
+COPY config/start.sh /start.sh
+ENTRYPOINT ["/bin/bash", "/start.sh"]
+ 
